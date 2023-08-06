@@ -1,0 +1,59 @@
+/* dashboard.css */
+.dashboard {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column; /* Align tasks vertically */
+    align-items: flex-start; /* Align tasks to the left */
+  }
+  
+  .dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .input-dashboard-title {
+    font-size: 1.5rem;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    width: 100%;
+  }
+  
+  .input-dashboard-title:focus {
+    outline: none;
+  }
+  
+  .task-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Align tasks vertically */
+    align-items: flex-start; /* Align tasks to the left */
+  }
+  
+  .task {
+    background-color: #f4f4f4;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .task.completed {
+    text-decoration: line-through;
+  }
+  
+  .task-details {
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  .task-priority {
+    font-weight: bold;
+    color: #e74c3c;
+  }
+  
