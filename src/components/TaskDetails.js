@@ -1,24 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
+import TaskDetails from './TaskDetails';
 
-const TaskDetails = ({ task }) => {
+const Task = ({ task, onDelete }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
-    <div className="task-details">
-
-      <div className="task-info">
-
-        <p>Due: {task.dueDate}</p>
-        <span className="priority">{task.priority}</span>
-      </div>
-      <div className="description">
-        <h4>Description:</h4>
-        <p>{task.description}</p>
-      </div>
-      <div className="status">
-        <h4>Status:</h4>
-        <p>{task.isComplete ? 'Completed' : 'Pending'}</p>
-      </div>
+    <div className={`task ${task.isComplete ? 'completed' : ''}`} onClick={toggleExpand}>
+      <h3>{task.title}</h3>
+      {isExpanded && (
+        <>
+          <TaskDetails task={task} onDelete={onDelete} />
+          <span className={`priority ${task.priority}`}>{task.priority}</span>
+        </>
+      )}
     </div>
   );
-}
+};
 
-export default TaskDetails;
+export default Task;

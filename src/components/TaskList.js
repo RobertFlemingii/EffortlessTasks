@@ -1,20 +1,32 @@
-import React from 'react';
-import Task from './Task'; // Import the Task component
+// TaskList.js
 
-const TaskList = () => {
-  const tasks = [
-    { id: 1, title: 'Complete Project Proposal', dueDate: 'August 15', priority: 'High Priority', isComplete: false },
-    { id: 2, title: 'Review Code Pull Request', dueDate: 'August 18', priority: 'Medium Priority', isComplete: false },
-    // Add more tasks as needed
-  ];
+import React, { useState } from 'react';
+import Task from './Task';
+import '../styles/tasklist.css';
+
+const TaskList = ({ tasks }) => {
+  const [taskList, setTaskList] = useState(tasks);
+
+  const handleDelete = (taskId) => {
+    const updatedTaskList = taskList.filter(task => task.id !== taskId);
+    setTaskList(updatedTaskList);
+  };
+
+  const handleAddTask = () => {
+    const newTask = { id: Date.now(), title: '', dueDate: '', priority: '', isComplete: false };
+    setTaskList([...taskList, newTask]);
+  };
 
   return (
     <div className="task-list">
-      {tasks.map(task => (
-        <Task key={task.id} task={task} />
+      {taskList.map(task => (
+        <Task key={task.id} task={task} onDelete={handleDelete} />
       ))}
+      <button className="add-task-button" onClick={handleAddTask}>Add Task</button>
     </div>
   );
 }
-
+TaskList.defaultProps = {
+  tasks: [] // Default empty array if tasks prop is not provided
+};
 export default TaskList;
